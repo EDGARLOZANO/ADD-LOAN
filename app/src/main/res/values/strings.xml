@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ADD-LOAN</string>
+    <array name="Opciones">
+        <item>Agregar</item>
+        <item>Buscar</item>
+        <item>Registro</item>
+
+    </array>
+</resources>
