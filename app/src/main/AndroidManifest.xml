@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".v_agregar"></activity>
+        <activity android:name=".v_agregar" />
+        <activity android:name=".Activity_mostrar"></activity>
     </application>
 
 </manifest>

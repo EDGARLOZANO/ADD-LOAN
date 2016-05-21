@@ -9,7 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.edgar.add_loan.v_agregar">
 
-
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+      
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -34,7 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Descripcion"
-            android:id="@+id/textView2" />
+            android:id="@+id/textView2"
+            android:textSize="@dimen/abc_text_size_headline_material" />
 
         <EditText
             android:layout_width="match_parent"
@@ -50,7 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Recibe"
-            android:id="@+id/textView4" />
+            android:id="@+id/textView4"
+            android:textSize="@dimen/abc_text_size_headline_material" />
 
         <EditText
             android:layout_width="match_parent"
@@ -61,7 +66,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cantidad"
-            android:id="@+id/textView5" />
+            android:id="@+id/textView5"
+            android:textSize="@dimen/abc_text_size_headline_material" />
 
         <EditText
             android:layout_width="match_parent"
@@ -74,21 +80,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fecha de entrega"
-            android:id="@+id/textView6" />
+            android:id="@+id/textView6"
+            android:textSize="@dimen/abc_text_size_headline_material" />
 
-        <EditText
-            android:layout_width="match_parent"
+        <DatePicker
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/editText5" />
+            android:id="@+id/datePicker"
+            android:layout_gravity="center_horizontal"
+            android:calendarViewShown="false"
+            android:spinnersShown="true"
+            android:datePickerMode="spinner" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageButton"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/index" />
+            android:background="@drawable/index"
+            android:onClick="enviar" />
 
     </LinearLayout>
+  </ScrollView>
 </RelativeLayout>

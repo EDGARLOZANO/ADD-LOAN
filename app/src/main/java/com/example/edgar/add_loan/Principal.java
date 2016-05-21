@@ -20,8 +20,8 @@ public class Principal extends Activity {
 
     String[] titulo = new String[]{
             "Agregar",
-            "Buscar",
-            "Regsitros",
+            "Mostrar",
+            "Registros",
 
     };
 
@@ -64,6 +64,10 @@ public class Principal extends Activity {
         });
 
     }
+
+
+
+
 
 
 }
