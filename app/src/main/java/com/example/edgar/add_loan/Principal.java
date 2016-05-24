@@ -14,16 +14,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-public class Principal extends Activity {
+public class Principal extends AppCompatActivity{
 
     ListViewAdapter adapter;
 
     String[] titulo = new String[]{
             "Agregar",
             "Mostrar",
-            "Registros",
-
-    };
+            "Registros",};
 
     int[] imagenes = {
             R.drawable.agregar,
@@ -47,7 +45,9 @@ public class Principal extends Activity {
 
                 switch (i){
                     case 0:startActivity(new Intent(Principal.this,v_agregar.class));
-                Toast.makeText(getApplicationContext(),"GUAPO EDGAR <3",Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:startActivity(new Intent(Principal.this,Activity_mostrar.class));
+                        break;
 
                 }
 

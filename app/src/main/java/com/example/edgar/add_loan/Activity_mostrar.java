@@ -14,9 +14,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Activity_mostrar extends AppCompatActivity {
-    ArrayList<CheckBox> che;
+    ArrayList<ListView> che;
     LinearLayout layin;
     ImageButton abrir;
+    ListViewAdapter adapter;
+
+    String[] l= null;
+    int[] ima=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +32,13 @@ public class Activity_mostrar extends AppCompatActivity {
 
 
 
-        che= new ArrayList<CheckBox>();
+        che= new ArrayList<ListView>();
         bd = new Conexion2(this, "Prestamos", null, 1);
 
         String[] matriz = null;
 
-        layin= (LinearLayout) findViewById(R.id.layo);
+
+       // layin= (LinearLayout) findViewById(R.id.layo);
 
         try {
             SQLiteDatabase base = bd.getReadableDatabase();
@@ -41,32 +46,43 @@ public class Activity_mostrar extends AppCompatActivity {
 
             Cursor cursor = base.rawQuery(sql, null);
             matriz = new String[cursor.getCount()];
+            l = new String[cursor.getCount()];
+            ima= new int[cursor.getCount()];
             int i = 0;
             if (cursor.moveToFirst()) {
                 do {
                     matriz[i] = cursor.getString(0);
-                    i++;
-                    CheckBox c= new CheckBox(this);
-                    String l=cursor.getString(1)+"'("+cursor.getString(3)+")'";
-                    c.setText(l);
+
+                    //ListView c= new ListView(this);
+                    l[i]=cursor.getString(1)+"'("+cursor.getString(3)+")'";
+
+                    ima[i]= R.drawable.azul;
 
                     String checar=cursor.getString(7);
 
-                    Toast.makeText(Activity_mostrar.this,"n33 existe", Toast.LENGTH_LONG).show();
+                    if(checar.equals("P")){
 
-                  if(checar.equals("D")) {
+                        ima[i]= R.drawable.azul;}
+                    else{
 
-
-                        che.add(c);
-                        layin.addView(c);
-                      Toast.makeText(Activity_mostrar.this,"-entra1", Toast.LENGTH_LONG).show();
-                    }else{
-                      che.add(c);
-                      layin.addView(c);
-                      Toast.makeText(Activity_mostrar.this,"entra 2", Toast.LENGTH_LONG).show();
-
+                        ima[i]=R.drawable.agregar;
 
                     }
+
+
+                    i++;
+
+
+
+
+
+                        //che.add(c);
+                       //layin.addView(lista);
+                      Toast.makeText(Activity_mostrar.this,"-entra1", Toast.LENGTH_LONG).show();
+
+
+
+
                 } while (cursor.moveToNext());
                 //         SimpleCursorAdapter adp1 = new SimpleCursorAdapter(this,android.R.layout.simple_spinner_item,cursor,new String[] {"DESC"},    new int[] {android.R.id.text1},0);
                 //       materias.setAdapter(adp1);
@@ -79,5 +95,10 @@ public class Activity_mostrar extends AppCompatActivity {
         } catch (SQLiteException sqle) {
             //imprime el error
         }
+
+        final ListView lista = (ListView) findViewById(R.id.listView);
+        adapter = new ListViewAdapter(this, l, ima);
+        lista.setAdapter(adapter);
+        //layin.addView(lista);
     }
 }
