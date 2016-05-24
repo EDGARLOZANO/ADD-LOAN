@@ -51,7 +51,7 @@ public class Principal extends AppCompatActivity{
 
                 }
 
-                Toast.makeText(getApplicationContext(), "presiono " + i, Toast.LENGTH_SHORT).show();
+
             }
         });
 

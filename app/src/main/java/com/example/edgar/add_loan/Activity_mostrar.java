@@ -1,10 +1,13 @@
 package com.example.edgar.add_loan;
 
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -14,10 +17,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Activity_mostrar extends AppCompatActivity {
-    ArrayList<ListView> che;
+
     LinearLayout layin;
     ImageButton abrir;
     ListViewAdapter adapter;
+    Conexion2 bd;
 
     String[] l= null;
     int[] ima=null;
@@ -28,17 +32,15 @@ public class Activity_mostrar extends AppCompatActivity {
 
         abrir=(ImageButton) findViewById(R.id.imageButton);
 
-        Conexion2 bd;
 
 
 
-        che= new ArrayList<ListView>();
+
         bd = new Conexion2(this, "Prestamos", null, 1);
 
         String[] matriz = null;
 
 
-       // layin= (LinearLayout) findViewById(R.id.layo);
 
         try {
             SQLiteDatabase base = bd.getReadableDatabase();
@@ -54,20 +56,24 @@ public class Activity_mostrar extends AppCompatActivity {
                     matriz[i] = cursor.getString(0);
 
                     //ListView c= new ListView(this);
-                    l[i]=cursor.getString(1)+"'("+cursor.getString(3)+")'";
+                    l[i]=cursor.getString(0)+"'("+cursor.getString(3)+")'";
 
-                    ima[i]= R.drawable.azul;
+
 
                     String checar=cursor.getString(7);
 
                     if(checar.equals("P")){
 
                         ima[i]= R.drawable.azul;}
-                    else{
+                   if(checar.equals("A")){
 
-                        ima[i]=R.drawable.agregar;
+                        ima[i]=R.drawable.rojo; }
 
-                    }
+                    if(checar.equals("D")){
+
+                        ima[i]=R.drawable.verde;
+
+                          }
 
 
                     i++;
@@ -76,16 +82,9 @@ public class Activity_mostrar extends AppCompatActivity {
 
 
 
-                        //che.add(c);
-                       //layin.addView(lista);
-                      Toast.makeText(Activity_mostrar.this,"-entra1", Toast.LENGTH_LONG).show();
-
-
-
 
                 } while (cursor.moveToNext());
-                //         SimpleCursorAdapter adp1 = new SimpleCursorAdapter(this,android.R.layout.simple_spinner_item,cursor,new String[] {"DESC"},    new int[] {android.R.id.text1},0);
-                //       materias.setAdapter(adp1);
+
             } else {
                 Toast.makeText(Activity_mostrar.this,"no existe", Toast.LENGTH_LONG).show();
 
@@ -100,5 +99,39 @@ public class Activity_mostrar extends AppCompatActivity {
         adapter = new ListViewAdapter(this, l, ima);
         lista.setAdapter(adapter);
         //layin.addView(lista);
+
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView adapterView, View view, int i, long l) {
+                //    Toast.makeText(Activity_mostrar.this,"UPDATE TablaPretasmo SET estado ='D' WHERE id="+(i+1)+"",Toast.LENGTH_LONG).show();
+
+                try {
+                    int t=i+1;
+                    SQLiteDatabase base = bd.getWritableDatabase();
+                    String SQL ="UPDATE TablaPrestamo SET estado='D' WHERE id=" + t + "";
+                    base.execSQL(SQL);
+                    base.close();
+                }
+                catch (SQLException e){
+
+                    Toast.makeText(Activity_mostrar.this,e.getMessage(),Toast.LENGTH_LONG).show();
+
+                }
+
+
+                Toast.makeText(Activity_mostrar.this,"MODIFICO",Toast.LENGTH_LONG).show();
+                return false;
+
+            }
+        });
+
+
+
+
     }
+
+
+
+
 }
+

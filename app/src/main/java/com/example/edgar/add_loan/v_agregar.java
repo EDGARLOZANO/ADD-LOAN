@@ -64,11 +64,12 @@ public class v_agregar extends AppCompatActivity {
 
             SQLiteDatabase base= bd.getWritableDatabase();
             String SQL= "INSERT INTO TablaPrestamo VALUES(NULL,'"+txt1.getText()+"','"+txt2.getText()+"','"+txt3.getText()+
-                    "',"+txt4.getText()+",'2016/05/20'"+",'"+fep+"','c')";
+                    "',"+txt4.getText()+",'2016/05/20'"+",'"+fep+"','P')";
             base.execSQL(SQL);
             base.close();
             Toast.makeText(v_agregar.this,"Se inserto correctamente",Toast.LENGTH_LONG).show();
             startActivity(new Intent(v_agregar.this, Activity_mostrar.class));
+            finish();
 
 
         }

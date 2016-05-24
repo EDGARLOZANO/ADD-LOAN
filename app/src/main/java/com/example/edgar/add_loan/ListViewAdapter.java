@@ -57,6 +57,7 @@ public class ListViewAdapter extends BaseAdapter {
 
         // Capture position and set to the TextViews
         txtTitle.setText(titulos[position]);
+        txtTitle.setTextSize(20);
         imgImg.setImageResource(imagenes[position]);
 
         return itemView;
