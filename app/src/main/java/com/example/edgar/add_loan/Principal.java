@@ -139,23 +139,24 @@ public class Principal extends AppCompatActivity{
 
         int a=Integer.parseInt(año);
         int m=Integer.parseInt(mes);
-        int d=Integer.parseInt(dia);
-        int a1=Integer.parseInt(año2);
+        int d=Integer.parseInt(dia);//FECHA ENVIADA
+
+        int a1=Integer.parseInt(año2);//FECHA ACTUAL
         int m1=Integer.parseInt(mes2);
         int d1=Integer.parseInt(dia2);
 
         if(a<=a1 && m<=m1 && d>d1){
 
-
-            Toast.makeText(Principal.this,"teamo",Toast.LENGTH_LONG).show();
+//fecha atrasada
+            Toast.makeText(Principal.this,"FECHA ATRASADA\nFECHA ENVIADA"+a+"-"+m+"-"+d+"\nFECHA ACTuAL"+a1+"-"+m1+"-"+d1,Toast.LENGTH_LONG).show();
 
             return 1;
 
 
 
         }
-
-        Toast.makeText(Principal.this,"teamo2",Toast.LENGTH_LONG).show();
+//FECHA BIEN
+        Toast.makeText(Principal.this,"FECHA BIEN\nFECHA ENVIADA"+a+"-"+m+"-"+d+"\nFECHA ACTuAL"+a1+"-"+m1+"-"+d1,Toast.LENGTH_LONG).show();
         return  0;
 
 

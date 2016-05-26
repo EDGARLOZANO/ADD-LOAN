@@ -65,6 +65,7 @@ public class Activity_mostrar extends AppCompatActivity {
 
 
                     String checar=cursor.getString(7);
+                    Toast.makeText(Activity_mostrar.this, cursor.getString(1)+"-"+checar, Toast.LENGTH_SHORT).show();
 
                     if(checar.equals("P")){
 
