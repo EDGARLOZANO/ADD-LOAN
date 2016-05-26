@@ -61,26 +61,6 @@ public class v_agregar extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         try {
 
 
@@ -91,7 +71,7 @@ public class v_agregar extends AppCompatActivity {
                     "',"+txt4.getText()+",'"+fechaActual()+"'"+",'"+fep+"','P')";
             base.execSQL(SQL);
             base.close();
-            Toast.makeText(v_agregar.this,"Se inserto correctamente",Toast.LENGTH_SHORT).show();
+            Toast.makeText(v_agregar.this,"Se inserto correctamente",Toast.LENGTH_LONG).show();
             startActivity(new Intent(v_agregar.this, Activity_mostrar.class));
             finish();
 
