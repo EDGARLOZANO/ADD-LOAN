@@ -15,7 +15,7 @@ public class Conexion2 extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE TablaPrestamo (id INTEGER PRIMARY KEY,t_objecto VARCHAR(200),des VARCHAR(200),Prestado VARCHAR(100),cantidad INTEGER,f_prestado DATE,f_entrega DATE,estado VARCHAR(1))");
-    }
+    }                                             //0                           1               2                           3           4                         5             6
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
