@@ -15,6 +15,9 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class v_agregar extends AppCompatActivity {
 
    ListView abrir;
@@ -22,6 +25,7 @@ public class v_agregar extends AppCompatActivity {
     ImageButton insert;
     EditText txt1,txt2,txt3,txt4;
     DatePicker date;
+    String fechaCadena="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +68,10 @@ public class v_agregar extends AppCompatActivity {
 
             SQLiteDatabase base= bd.getWritableDatabase();
             String SQL= "INSERT INTO TablaPrestamo VALUES(NULL,'"+txt1.getText()+"','"+txt2.getText()+"','"+txt3.getText()+
-                    "',"+txt4.getText()+",'2016/05/20'"+",'"+fep+"','P')";
+                    "',"+txt4.getText()+",'"+fechaActual()+"'"+",'"+"2016/04/28"+"','P')";
             base.execSQL(SQL);
             base.close();
-            Toast.makeText(v_agregar.this,"Se inserto correctamente",Toast.LENGTH_LONG).show();
+            Toast.makeText(v_agregar.this,"Se inserto correctamente",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(v_agregar.this, Activity_mostrar.class));
             finish();
 
@@ -75,13 +79,34 @@ public class v_agregar extends AppCompatActivity {
         }
         catch (SQLException e){
 
-            Toast.makeText(v_agregar.this,e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(v_agregar.this,e.getMessage()+"Existen campos vacios",Toast.LENGTH_SHORT).show();
 
         }
 
     }
 
 
+
+    private String fechaActual(){
+        String fechaActual="";
+        Calendar c = GregorianCalendar.getInstance();
+        int año = c.get(Calendar.YEAR);
+        int mes = c.get(Calendar.MONTH)+1;
+        int dia = c.get(Calendar.DAY_OF_MONTH);
+
+        fechaCadena=año+"/";
+        if(mes>=10){
+            fechaCadena+=mes+"/";
+        }else{
+            fechaCadena +="0"+mes+"/";
+        }
+        if(dia>=10){
+            fechaCadena +=dia;
+        }else{
+            fechaCadena +="0"+dia;
+        }
+        return fechaCadena;
+    }
 
     /**
      * Created by edgar on 6/05/16.
